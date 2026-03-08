@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Admin Panel</title>
+
+<style>
+
+body{
+font-family:Poppins;
+background:#f4f6ff;
+padding:40px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
+}
+
+h1{
+text-align:center;
+margin-bottom:30px;
+}
+
+input, textarea{
+width:100%;
+padding:10px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:6px;
+}
+
+button{
+background:#4a63ff;
+color:white;
+border:none;
+padding:12px 20px;
+border-radius:6px;
+cursor:pointer;
+font-weight:bold;
+}
+
+button:hover{
+background:#2f45e6;
+}
+
+.gallery-preview img{
+width:120px;
+margin:10px;
+border-radius:8px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Portfolio Admin Panel</h1>
+
+<label>Name</label>
+<input id="name">
+
+<label>About</label>
+<textarea id="about"></textarea>
+
+<label>Phone</label>
+<input id="phone">
+
+<label>Email</label>
+<input id="email">
+
+<label>Profile Image URL</label>
+<input id="profile">
+
+<h2>Gallery Images (Add Image URL)</h2>
+
+<input id="galleryInput">
+<button onclick="addGallery()">Add Image</button>
+
+<div class="gallery-preview" id="galleryPreview"></div>
+
+<br><br>
+
+<button onclick="saveData()">Save Website Data</button>
+
+</div>
+
+
+<script>
+
+let gallery = JSON.parse(localStorage.getItem("gallery")) || [];
+
+function loadData(){
+
+document.getElementById("name").value =
+localStorage.getItem("name") || "Prof. Anjali Giri";
+
+document.getElementById("about").value =
+localStorage.getItem("about") || "";
+
+document.getElementById("phone").value =
+localStorage.getItem("phone") || "";
+
+document.getElementById("email").value =
+localStorage.getItem("email") || "";
+
+document.getElementById("profile").value =
+localStorage.getItem("profile") || "";
+
+renderGallery();
+
+}
+
+function saveData(){
+
+localStorage.setItem("name",
+document.getElementById("name").value);
+
+localStorage.setItem("about",
+document.getElementById("about").value);
+
+localStorage.setItem("phone",
+document.getElementById("phone").value);
+
+localStorage.setItem("email",
+document.getElementById("email").value);
+
+localStorage.setItem("profile",
+document.getElementById("profile").value);
+
+localStorage.setItem("gallery",
+JSON.stringify(gallery));
+
+alert("Website Updated!");
+
+}
+
+function addGallery(){
+
+let url = document.getElementById("galleryInput").value;
+
+if(url){
+gallery.push(url);
+renderGallery();
+document.getElementById("galleryInput").value="";
+}
+
+}
+
+function renderGallery(){
+
+let container = document.getElementById("galleryPreview");
+container.innerHTML="";
+
+gallery.forEach((img,i)=>{
+
+container.innerHTML+=`
+<div>
+<img src="${img}">
+<button onclick="removeImg(${i})">Delete</button>
+</div>
+`;
+
+});
+
+}
+
+function removeImg(i){
+
+gallery.splice(i,1);
+renderGallery();
+
+}
+
+loadData();
+
+</script>
+
+</body>
+</html>
