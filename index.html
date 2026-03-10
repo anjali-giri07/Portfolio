@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-    
+    <meta name="keywords"
+        content="Portfolio">
     <meta name="author" content="Prof. Anjali Giri">
     <meta name="robots" content="index, follow">
 
@@ -542,45 +543,59 @@ h3 {
 
 /* TABLET */
 
-@media (max-width:1024px) {
+@media(max-width:1024px) {
     
-    .hero-left h1 {
+    .hero-text h1 {
         font-size: 3rem;
     }
     
-    .hero-left h2 {
-        font-size: 1.6rem;
+}
+
+/* MOBILE */
+
+@media(max-width:768px) {
+    
+    .hero {
+        flex-direction: column;
+        text-align: center;
     }
     
-    .hero-right .image-container {
-        width: 320px;
-        height: 380px;
+    .nav-links {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        flex-direction: column;
+        background: white;
+        width: 80%;
+        max-width: 300px;
+        height: 100vh;
+        padding: 30px;
+        transition: 0.3s;
     }
     
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .hamburger {
+        display: block;
     }
     
 }
 
-/* LARGE SCREENS */
+/* SMALL MOBILE */
 
-@media (min-width:1400px) {
+@media(max-width:480px) {
     
-    nav {
-        max-width: 1400px;
+    .hero-text h1 {
+        font-size: 2rem;
     }
     
-    section {
-        max-width: 1400px;
-    }
-    
-    .hero-left h1 {
-        font-size: 5rem;
+    .hero-text h2 {
+        font-size: 1.2rem;
     }
     
 }
-
     </style>
 </head>
 
@@ -949,7 +964,7 @@ Brahmavar Karnataka
     
     <div class="gallery-grid">
         
-        <img src="https://picsum.photos/id/1011/600/400" class="gallery-img">
+        <img src="">
         <img src="https://picsum.photos/id/1015/600/400" class="gallery-img">
         <img src="https://picsum.photos/id/1025/600/400" class="gallery-img">
         <img src="https://picsum.photos/id/1035/600/400" class="gallery-img">
@@ -1148,50 +1163,6 @@ lightbox.addEventListener("click", () => {
     lightbox.style.display = "none";
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    
-    let name = localStorage.getItem("name");
-    let about = localStorage.getItem("about");
-    let phone = localStorage.getItem("phone");
-    let email = localStorage.getItem("email");
-    let profile = localStorage.getItem("profile");
-    let gallery = JSON.parse(localStorage.getItem("gallery"));
-    
-    if (name) {
-        document.querySelector("h1").innerText = name;
-    }
-    
-    if (about) {
-        document.querySelector("#hero p").innerText = about;
-    }
-    
-    if (phone) {
-        document.querySelector(".bx-phone-call").parentElement.innerHTML =
-            "<strong>Phone:</strong> " + phone;
-    }
-    
-    if (email) {
-        document.querySelector(".bxs-envelope").parentElement.innerHTML =
-            "<strong>Email:</strong> " + email;
-    }
-    
-    if (profile) {
-        document.querySelector(".hero-right img").src = profile;
-    }
-    
-    if (gallery) {
-        
-        let grid = document.querySelector(".gallery-grid");
-        
-        grid.innerHTML = "";
-        
-        gallery.forEach(img => {
-            grid.innerHTML += `<img src="${img}" class="gallery-img">`;
-        });
-        
-    }
-    
-});
     </script>
 </body>
 </html>
