@@ -541,6 +541,122 @@ h3 {
     border-radius: 10px;
 }
 
+/* Mobile Responsive (Portrait Mode Fixes) */
+@media (max-width: 768px) {
+    nav {
+        padding: 12px 16px;
+    }
+    
+    .logo {
+        font-size: 1.3rem;
+    }
+    
+    /* Mobile Slide-in Menu */
+    .nav-links {
+        position: fixed;
+        top: 65px;
+        right: -100%;
+        width: 75%;
+        height: 100vh;
+        background: var(--nav-bg);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px); /* For iOS Safari */
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 40px 20px;
+        gap: 25px;
+        transition: 0.4s ease-in-out;
+        z-index: 999;
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+    }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .nav-links a {
+        font-size: 1.1rem;
+    }
+    
+    .hamburger {
+        display: block;
+        z-index: 1000;
+    }
+    
+    /* Hero Section - Stack Vertically */
+    #hero.active-section {
+        flex-direction: column; /* This fixes the side-by-side squish */
+        text-align: center;
+        justify-content: center;
+        padding-top: 40px;
+        gap: 2rem;
+    }
+    
+    .hero-left {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .hero-left h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-left p {
+        font-size: 1rem;
+    }
+    
+    /* Stack Hero Buttons */
+    .hero-left div {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 100%;
+        align-items: center;
+    }
+    
+    .overlay-link-btn {
+        margin-right: 0 !important;
+        width: 80%;
+        justify-content: center;
+    }
+    
+    /* Hero Section - Stack Vertically with Photo on Top */
+    #hero.active-section {
+        flex-direction: column-reverse; /* This flips the order so the image is on top! */
+        text-align: center;
+        justify-content: center;
+        padding-top: 40px;
+        gap: 2rem;
+    }
+
+    
+    /* Grids */
+    .gallery-grid,
+    .skills-grid,
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Experience Role/Date Stacking */
+    .role-date {
+        flex-direction: column;
+        gap: 5px;
+        align-items: flex-start;
+    }
+    
+    /* Responsive Data Tables */
+    .edu-table-container,
+    .contact-card {
+        overflow-x: auto;
+    }
+    
+    /* Make the Contact/Languages table stack neatly on phones */
+    .contact-card table td, .contact-card table th {
+        font-size: 0.9rem;
+    }
+}
 
 
     </style>
